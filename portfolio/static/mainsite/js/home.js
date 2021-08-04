@@ -25,11 +25,13 @@ function updateSummary () {
 }
 
 function addListeners () {
-    addSlideshowBackgroundTransition()
+    // addSlideshowBackgroundTransition()
 }
 
 function addSlideshowBackgroundTransition () {
+    const transition = () => {$(".middle").toggleClass('blue');};
     $(".slideshow-input").on("change", () => {
-        $(".slideshow-container").toggleClass('blue')
+        transition()
+        // setTimeout(transition, 500);
     });
 }
