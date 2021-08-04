@@ -1,8 +1,12 @@
 from django.db import models
 # from django.utils import timezone
 import datetime
+import pytz
 
 # Create your models here.
+
+TIMEZONE = 'US/EASTERN'
+
 
 class SocialMedia(models.Model):
     title = models.CharField(max_length=50)
@@ -36,4 +40,6 @@ class Access(models.Model):
     objects = AccessManager()
 
     def __str__(self) -> str:
-        return f'{self.ipv4} accessed the website on {self.access_date}'
+        tz_date = self.access_date.astimezone(pytz.timezone(TIMEZONE))
+        date_str = tz_date.strftime('%H:%M:%S %d %b, %Y')
+        return f'{self.ipv4} accessed the website on {date_str}'
