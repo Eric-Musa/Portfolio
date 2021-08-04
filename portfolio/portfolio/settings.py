@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'ericmusa.com', 
-    '52.21.232.70'
+    '52.21.232.70',
+    '127.0.0.1',
 ]
 
 
