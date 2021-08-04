@@ -12,7 +12,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/opt/bitnami/projects/portfolio')
-os.environ["PYTHON_EGG_CACHE"] = "/opt/bitnami/projects/portfolio/egg_cache"
+sys.path.append('/opt/bitnami/projects/Portfolio/portfolio')
+os.environ["PYTHON_EGG_CACHE"] = "/opt/bitnami/projects/Portfolio/portfolio/egg_cache"
 os.environ['DJANGO_SETTINGS_MODULE'] = 'portfolio.settings'
 application = get_wsgi_application()
