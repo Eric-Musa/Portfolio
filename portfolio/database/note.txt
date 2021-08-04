@@ -1,0 +1,4 @@
+Write permissions to database were granted by:
+1. creating a usergroup "portfolio"
+2. adding "bitnami" and "daemon" to the portfolio group
+3. running sudo chown bitnami:portfolio on /database and /database/db.sqlite3

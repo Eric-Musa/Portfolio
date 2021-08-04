@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/home.css' %}">
+    <title>Eric Musa's portfolio</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <script src="{% static 'mainsite/js/home.js' %}"></script>
+</head>
+<body>
+    <div class="common-top">
+        <div id="home-button-container">
+            <a href="/">
+                <img src="{% static 'favicon/android-chrome-512x512.png' %}" alt="Go to Home" id="home-button">
+            </a>
+        </div>
+        <div class="links-container" id="tabs-container">
+            <div class="fill-bar"></div>
+            <a href="/" id="home">Home</a>
+            <a href="/" id="research">Research</a>
+            <a href="/" id="projects">Projects</a>
+            <a href="/" id="hobbies">Hobbies</a>
+            <a href="/" id="roadmap">Roadmap</a>
+            <a href="/" id="about">About Me</a>
+            <div class="fill-bar"></div>
+        </div>
+    </div>
+    <div id="welcome-container">
+        <div></div>
+        <h1>Welcome to the portfolio website of Eric Musa!</h1>
+        <p id="summary"></p>
+    </div>
+    <div class="slideshow-container">
+        <input type="radio" class="slideshow-input" name="slider" id="pic-1" checked>
+        <input type="radio" class="slideshow-input" name="slider" id="pic-2">
+        <input type="radio" class="slideshow-input" name="slider" id="pic-3">
+        <!-- <input type="radio" name="slider" id="pic-4">
+        <input type="radio" name="slider" id="pic-5">
+        <input type="radio" name="slider" id="pic-6"> -->
+        <div class="slideshow">
+            <label for="pic-1" class="picture" id="me-grand-tetons">
+                <img src="{% static 'mainsite/images/me_grand_tetons.jpg' %}" alt="Me at Grand Tetons!">
+            </label>
+            <label for="pic-2" class="picture" id="dancing-at-oxford">
+                <img src="{% static 'mainsite/images/dancing_at_oxford.jpg' %}" alt="Us dancing at Oxford Housing!">
+            </label>
+            <label for="pic-3" class="picture" id="me-sand-dunes">
+                <img src="{% static 'mainsite/images/me_sand_dunes.jpg' %}" alt="Me at Great Sand Dunes!">
+            </label>
+            <!-- <label for="pic-4" class="picture" id="boys-on-the-roof">
+                <img src="{% static 'mainsite/images/boys_on_the_roof.jpg' %}" alt="Boys on the roof at Oxford!">
+            </label>
+            <label for="pic-5" class="picture" id="me-grad-pic">
+                <img src="{% static 'mainsite/images/me_grad_pic.jpg' %}" alt="Me in graduation garb!">
+            </label>
+            <label for="pic-6" class="picture" id="boys-at-the-stadiu,">
+                <img src="{% static 'mainsite/images/boys_at_the_stadium.jpg' %}" alt="Boys at Michigan Stadium!">
+            </label> -->
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="links-container" id="social-media-container">
+            <div class="fill-bar"></div>
+            {% for sm in social_media %}
+                <a href="{{ sm.hyperlink }}" target="_blank">{{ sm.title }}</a>
+            {% endfor %}
+            <div class="fill-bar"></div>
+        </div>
+    </div>
+</body>
+</html>

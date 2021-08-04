@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/styles.css' %}">
+    <title>Eric Musa's portfolio</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+</head>
+<body>
+    <div class="top">
+        <section class="hero">
+            <!-- <header">
+                <a href="https://ericmusa-test.com">Test site</a>
+            </header> -->
+            <div class="header-container">
+                <h1 id="WIP-Header">
+                    Welcome to my website! It's a big WIP, obviously :) ~~ Eric Musa
+                </h1>
+            </div>
+            <div class="social-media" id="social-media">
+                <ul>
+                {% for sm in social_media %}
+                    <li>
+                        <div class="social-media-box"><a href="{{ sm.hyperlink }}" target="_blank">{{ sm.title }}</a></div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="tasks" id="tasks">
+                <ul>
+                {% for t in tasks %}
+                    <li>
+                        <div class="tasks-box">
+                    <p>{{ t.task }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <!-- <a href="donotclick.html" class="button">DO NOT CLICK</a> -->
+    </div>
+    <div class="middle" id="middle">
+        <div class="picture-container" id="picture-container">
+            <a href="https://www.instagram.com/eric__mufasa/" target="_blank">
+                <img id="picture-of-me" src="{% static 'mainsite/images/me.jpg' %}" alt="A picture of me!">
+            </a>
+            <div class="caption-container" id="caption-container">
+                <p id="picture-caption">This is me! My great friend Alex took this picture at <a href="https://www.nps.gov/grte/index.htm" target="_blank">Grand Tetons National Park</a> earlier this year (May 2021).</p>
+            </div>
+            <!-- <a href="fluid_sim">go to fluid simulation</a> -->
+        </div>
+    </div>
+    <div class="bottom">
+    </div>
+</body>
+</html>
