@@ -1,14 +1,24 @@
-// REFERENCED OBJECTS
+// GLOBAL CONSTS
+const nPics = 3;
+const shortInterval = 5000;
+const longInterval = 10000;
 
-$(document).ready(onPageLoad);
+
+// REFERENCED OBJECTS
+var slideshowInterval;
+var slideshowTimeout;
 
 
 // RUN THIS FUNCTION ON PAGE LOAD
-function onPageLoad () {
-    updateSummary()
-    addListeners()
-}
+$(document).ready(onPageLoad);
 
+
+function onPageLoad () {
+    updateSummary();
+    setSlideshowInterval();
+    addListeners()
+    // addSlideshowAutoChange();
+}
 
 
 
@@ -26,12 +36,33 @@ function updateSummary () {
 
 function addListeners () {
     // addSlideshowBackgroundTransition()
+    $("input[name=slider]").click(slideshowClicked);
 }
 
-function addSlideshowBackgroundTransition () {
-    const transition = () => {$(".middle").toggleClass('blue');};
-    $(".slideshow-input").on("change", () => {
-        transition()
-        // setTimeout(transition, 500);
-    });
+// function addSlideshowBackgroundTransition () {
+//     const transition = () => {$(".middle").toggleClass('blue');};
+//     $(".slideshow-input").on("change", () => {
+//         transition()
+//         // setTimeout(transition, 500);
+//     });
+// }
+
+
+function setSlideshowInterval () {
+    slideshowInterval = window.setInterval(autoIterateSlideshow, shortInterval);
 }
+
+function slideshowClicked () {
+    $(".picture").css({"transition": "transform 0.5s ease"})  // revert back to fast transition for clicks
+    slideshowInterval = window.clearInterval(slideshowInterval);
+    clearTimeout(slideshowTimeout);
+    slideshowTimeout = setTimeout(setSlideshowInterval, shortInterval/2);
+}
+
+function autoIterateSlideshow () {
+    const checkedVal = parseInt($("input[name=slider]:checked").val());
+    const nextVal = (checkedVal == nPics) ? 1 : checkedVal + 1;
+    $("input[name=slider][value="+nextVal+"]").prop('checked', true);
+    $(".picture").css({"transition": "transform 1.5s ease"})  // make auto transition slower
+}
+
