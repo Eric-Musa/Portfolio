@@ -33,9 +33,10 @@
         </div>
     </div>
     <div id="welcome-container">
-        <div></div>
-        <h1>Welcome to the portfolio website of Eric Musa!</h1>
-        <p id="summary"></p>
+        <div id="welcome">
+            <h1>Welcome to the portfolio website of Eric Musa!</h1>
+            <p id="summary"></p>
+        </div>
     </div>
     <div class="middle">
         <div class="slideshow-container">
@@ -72,6 +73,7 @@
             <div class="fill-bar"></div>
             {% for sm in social_media %}
                 <a href="{{ sm.hyperlink }}" target="_blank">{{ sm.title }}</a>
+                <!-- ADD SOCIAL MEDIA ICON IMAGES -->
             {% endfor %}
             <div class="fill-bar"></div>
         </div>

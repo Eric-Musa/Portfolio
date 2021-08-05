@@ -3,7 +3,7 @@
 :root {
     --accent-color: rgba(45, 121, 235, 0.3);
     --accent-color-opq: rgb(45, 121, 235);
-    --home-button-width: 8em;
+    --home-button-width: 6em;
 }
 
 body {
@@ -84,7 +84,7 @@ body {
 }
 
 #tabs-container {
-    margin: calc(0.25 * var(--home-button-width)) var(--home-button-width) 3em var(--home-button-width);
+    margin: calc(0.2 * var(--home-button-width)) var(--home-button-width) 2em var(--home-button-width);
 }
 
 #tabs-container div {
@@ -101,10 +101,13 @@ body {
     align-items: center;
     width: 100%;
     margin-bottom: 1em;
+    color: white;
+    font-style: bold;
 }
 
 #welcome-container h1 {
     margin: 0 0 0.5em 0;
+    text-align: center;
 }
 
 #welcome-container p {
@@ -113,6 +116,12 @@ body {
     text-align: justify;
     font-size: 1.2em;
     /* white-space: pre-wrap; */
+}
+
+#welcome {
+    padding: 1em 1.5em;
+    background-color: rgb(99, 99, 99);
+    border-radius: 0.5em;
 }
 
 .header-span {
@@ -142,6 +151,8 @@ body {
     transition: background 1s ease-in;
     background: -webkit-radial-gradient(closest-side black 0%, black 20%, white 100%);
     /* background-color: white; */
+    padding: 2em 0 5em 0;
+    margin-bottom: 3em;
 }
 
 /* .middle.blue {
@@ -224,7 +235,7 @@ input[type=radio] {
 }
 
 .bottom {
-    margin-top: 1em;
+    margin: 1em 0;
 }
 
 #social-media-container div {
