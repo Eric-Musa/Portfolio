@@ -1,3 +1,4 @@
+import { iterateSlideshow } from "./slideshow";
 // GLOBAL CONSTS
 const nPics = 3;
 const shortInterval = 5000;
@@ -54,6 +55,8 @@ function setSlideshowInterval () {
 
 function slideshowClicked () {
     $(".picture").css({"transition": "transform 0.5s ease"})  // revert back to fast transition for clicks
+    iterateSlideshow()
+
     slideshowInterval = window.clearInterval(slideshowInterval);
     clearTimeout(slideshowTimeout);
     slideshowTimeout = setTimeout(setSlideshowInterval, shortInterval/2);
@@ -63,6 +66,8 @@ function autoIterateSlideshow () {
     const checkedVal = parseInt($("input[name=slider]:checked").val());
     const nextVal = (checkedVal == nPics) ? 1 : checkedVal + 1;
     $("input[name=slider][value="+nextVal+"]").prop('checked', true);
+    
     $(".picture").css({"transition": "transform 1.5s ease"})  // make auto transition slower
+    iterateSlideshow
 }
 

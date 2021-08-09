@@ -12,7 +12,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
-    <script src="{% static 'mainsite/js/home.js' %}"></script>
+    <script type="module" src="{% static 'mainsite/js/home.js' %}"></script>
+    <!-- <script type="module" src="{% static 'mainsite/js/slideshow.js' %}"></script> -->
 </head>
 <body>
     <div class="common-top">
@@ -43,9 +44,9 @@
             <input type="radio" class="slideshow-input" name="slider" value="1", id="plbl-1" checked>
             <input type="radio" class="slideshow-input" name="slider" value="2", id="plbl-2">
             <input type="radio" class="slideshow-input" name="slider" value="3", id="plbl-3">
-            <!-- <input type="radio" name="slider" value="4", id="plbl-4">
+            <input type="radio" name="slider" value="4", id="plbl-4">
             <input type="radio" name="slider" value="5", id="plbl-5">
-            <input type="radio" name="slider" value="6", id="plbl-6"> -->
+            <input type="radio" name="slider" value="6", id="plbl-6">
             <div class="slideshow">
                 <label for="plbl-1" class="picture" id="pic-1">
                     <img src="{% static 'mainsite/images/me_grand_tetons.jpg' %}" alt="Me at Grand Tetons!">
@@ -56,7 +57,7 @@
                 <label for="plbl-3" class="picture" id="pic-3">
                     <img src="{% static 'mainsite/images/me_sand_dunes.jpg' %}" alt="Me at Great Sand Dunes!">
                 </label>
-                <!-- <label for="plbl-4" class="picture" id="pic-4">
+                <label for="plbl-4" class="picture" id="pic-4">
                     <img src="{% static 'mainsite/images/boys_on_the_roof.jpg' %}" alt="Boys on the roof at Oxford!">
                 </label>
                 <label for="plbl-5" class="picture" id="pic-5">
@@ -64,7 +65,7 @@
                 </label>
                 <label for="plbl-6" class="picture" id="pic-6">
                     <img src="{% static 'mainsite/images/boys_at_the_stadium.jpg' %}" alt="Boys at Michigan Stadium!">
-                </label> -->
+                </label>
             </div>
         </div>
     </div>
