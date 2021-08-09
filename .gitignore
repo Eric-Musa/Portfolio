@@ -3,6 +3,8 @@ portfolio/conf/
 database/db.sqlite3
 **/migrations/
 */static/admin/
+node_modules/
+local/
 
 
 # Byte-compiled / optimized / DLL files
