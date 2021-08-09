@@ -1,28 +1,30 @@
 const nPics = $(".slideshow").children().length;
-const nShowing = 5;
 
 
 function farLeftSlide () {
     return {
-        "transform": "translatex(-60%) scale(.5)",
-        "opacity": .2,
-        "zIndex": -1,
+        "transform": "translatex(-75%) scale(.5)",
+        // "opacity": .2,
+        "filter": "brightness(50%) blur(5px)",
+        "z-index": 1,
     }
 }
 
 function nearLeftSlide () {
     return {
         "transform": "translatex(-45%) scale(.8)",
-        "opacity": .5,
-        "z-index": 0,
+        // "opacity": .5,
+        "filter": "brightness(75%) blur(2px)",
+        "z-index": 2,
     }
 }
 
 function centerSlide () {
     return {
         "transform": "translatex(0) scale(1)",
-        "opacity": 1,
-        "z-index": 1,
+        // "opacity": 1,
+        "filter": "brightness(100%)",
+        "z-index": 3,
     }
 }
 
@@ -35,44 +37,48 @@ function centerSlideShadow () {
 function nearRightSlide () {
     return {
         "transform": "translatex(45%) scale(.8)",
-        "opacity": .5,
-        "z-index": 0,
+        // "opacity": .5,
+        "filter": "brightness(75%) blur(2px)",
+        "z-index": 2,
     }
 }
 
 function farRightSlide () {
     return {
-        "transform": "translatex(0) scale(.2)",
-        "opacity": .2,
-        "z-index": -2,
+        "transform": "translatex(75%) scale(.5)",
+        // "opacity": .2,
+        "filter": "brightness(50%) blur(5px)",
+        "z-index": 1,
     }
 }
 
 function hiddenSlide () {
     return {
-        "transform": "translatex(-60%) scale(.5)",
-        "opacity": 0,
-        "z-index": -1,
+        "transform": "translatex(0%) scale(.2)",
+        // "opacity": 0,
+        "filter": "brightness(0)",
+        "z-index": 0,
     }
 }
 
-export function iterateSlideshow () {
-    const checkedVal = parseInt($("input[name=slider]:checked").val());     
-    for (var i = checkedVal-1; i < nPics; i++){
-        const valDiff = checkedVal - checkedVal;
-        if (valDiff == -2) {
-            $(`pic-${checkedVal}`).css(farLeftSlide());
-        } else if (valDiff == -1) {
-            $(`pic-${checkedVal}`).css(nearLeftSlide());
+export function slideshowTransition () {
+    const checkedVal = parseInt($("input[name=slider]:checked").val());
+    for (var i = 1; i < nPics + 1; i++){
+        const valDiff = i - checkedVal;
+        // console.log(i, valDiff, valDiff - nPics, valDiff + nPics)
+        if (valDiff == -2 || valDiff - nPics == -2) {
+            $(`#pic-${i}`).css(farLeftSlide());
+        } else if (valDiff == -1 || valDiff - nPics == -1) {
+            $(`#pic-${i}`).css(nearLeftSlide());
         } else if (valDiff == 0) {
-            $(`pic-${checkedVal}`).css(centerSlide());
-            $(`pic-${checkedVal} .img`).css(centerSlideShadow());
-        } else if (valDiff == 1) {
-            $(`pic-${checkedVal}`).css(nearRightSlide());
-        } else if (valDiff == 2) {
-            $(`pic-${checkedVal}`).css(farRightSlide());
+            $(`#pic-${i}`).css(centerSlide());
+            // $(`#pic-${i} img`).css(centerSlideShadow());
+        } else if (valDiff == 1 || valDiff + nPics == 1) {
+            $(`#pic-${i}`).css(nearRightSlide());
+        } else if (valDiff == 2 || valDiff + nPics == 2) {
+            $(`#pic-${i}`).css(farRightSlide());
         } else {
-            $(`pic-${checkedVal}`).css(hiddenSlide());
+            $(`#pic-${i}`).css(hiddenSlide());
         }
     }
 }
