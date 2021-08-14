@@ -1,0 +1,139 @@
+@mixin item($bg-color) {
+    display: inline-block;
+    background-color: $bg-color;
+    height: 10em;
+    width: 10em;
+}
+
+@mixin picture-format {
+    width: 50%;
+    height: 50%;
+    filter: brightness(50%);
+    margin: auto;
+    transition: transform 1.5s ease;
+}
+
+.block1, .block2, .block3 {
+    display: block;
+    height: 10em;
+    width: 10em;
+    margin: 1em 0;
+}
+
+.flex1, .flex2, .flex3 {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.item1 {
+    @include item(red);
+}
+
+.item3 {
+    @include item(yellow);
+}
+
+.item2 {
+    @include item(blue);
+}
+
+input[type=radio] {
+    display: none;
+}
+
+.container {
+    // height: 30em;
+    // max-height: 600px;
+    // max-width: 800px;
+    // display: contents;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+}
+
+// .slideshow-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 20%;
+// }
+
+.slideshow {
+    // display: contents;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.picture {
+    // @include picture-format;
+    width: 70%;
+    height: 70%;
+    filter: brightness(50%);
+    margin: auto;
+    transition: transform .5s ease;
+    position: absolute;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+
+#plbl-1:checked ~ .slideshow #pic-3, 
+#plbl-2:checked ~ .slideshow #pic-1, 
+#plbl-3:checked ~ .slideshow #pic-2 {
+  transform: translatex(-30%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+
+#plbl-1:checked ~ .slideshow #pic-2, 
+#plbl-2:checked ~ .slideshow #pic-3, 
+#plbl-3:checked ~ .slideshow #pic-1 {
+  transform: translatex(30%) scale(.8);
+  opacity: .4;
+  z-index: 0;
+}
+
+#plbl-1:checked ~ .slideshow #pic-1, 
+#plbl-2:checked ~ .slideshow #pic-2, 
+#plbl-3:checked ~ .slideshow #pic-3 {
+  transform: translatex(0) scale(1);
+  opacity: 1;
+  z-index: 1;
+  img {
+    box-shadow: 5px 5px 5px rgba(81, 81, 81, 0.47);
+  }
+  
+}
+
+@media (max-width: 768px) {
+    
+    .picture {
+        width: 40%;
+        height: 90%;
+    }
+
+    .container {
+        padding-top: 80%;
+    }
+}

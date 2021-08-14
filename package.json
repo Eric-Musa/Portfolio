@@ -18,7 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "webpack --mode=production",
-    "build:dev": "webpack --mode=development"
+    "build:dev": "webpack --mode=development --watch"
   },
   "repository": {
     "type": "git",

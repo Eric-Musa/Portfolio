@@ -1,0 +1,47 @@
+{% load static %}
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title(Eric Musa's portfolio)
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+        script(src="{% static 'mainsite/dist/bundle.js' %}")
+        //- link(rel="stylesheet" type="text/css" href="{% static 'mainsite/home3.scss' %}")
+        link(rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}")
+        link(rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}")
+        link(rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}")
+        link(rel="manifest" href="{% static 'favicon/site.webmanifest' %}")
+    body 
+        .block1
+            .flex1
+                .item1
+                .item2
+                .item3
+        
+        .block2
+            .flex2
+                .item1
+                .item2
+                .item3
+        
+        .block3
+            .flex3
+                .item1
+                .item2
+                .item3
+                
+        .container
+            //- .slideshow-container
+            input#plbl-1.slideshow-input(type='radio' name='slider' value='1' ,='' checked='')
+            input#plbl-2.slideshow-input(type='radio' name='slider' value='2' ,='')
+            input#plbl-3.slideshow-input(type='radio' name='slider' value='3' ,='')
+            .slideshow
+                label#pic-1.picture(for='plbl-1')
+                    img(src="{% static 'mainsite/images/me_grand_tetons.jpg' %}" alt='Me at Grand Tetons!')
+                label#pic-2.picture(for='plbl-2')
+                    img(src="{% static 'mainsite/images/dancing_at_oxford.jpg' %}" alt='Us dancing at Oxford Housing!')
+                label#pic-3.picture(for='plbl-3')
+                    img(src="{% static 'mainsite/images/me_sand_dunes.jpg' %}" alt='Me at Great Sand Dunes!')
+

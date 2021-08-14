@@ -57,6 +57,7 @@ def index(request):
         'tasks': Task.objects.filter(),
     }
     return render(request, 'mainsite/index2.html', context)  # HttpResponse(template.render({}, request))
+    # return render(request, 'mainsite/index3.pug', context)  # HttpResponse(template.render({}, request))
 
 @register_access
 def do_not_click(request):
