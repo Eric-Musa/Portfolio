@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'mainsite.apps.MainsiteConfig',
+    'api.apps.ApiConfig',
+    'frontend.apps.FrontendConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
