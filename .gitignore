@@ -4,7 +4,8 @@ database/db.sqlite3
 **/migrations/
 **/static/admin/
 Local/
-
+**/node_modules/
+**/*.LICENSE.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
