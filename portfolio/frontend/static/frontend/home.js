@@ -21,16 +21,23 @@ function onPageLoad () {
 }
 
 
-
 function updateSummary () {
-    const initDate = new Date('July 22, 2021 19:00:00 GMT-5:00');
     const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    const daysDiff = Math.ceil(Math.abs(today - initDate) / 1000 / 24 / 60 / 60);
-    const weeksDiff = Math.floor(daysDiff / 7) + 1;
+
+    const initDate = new Date('July 22, 2021 19:00:00 GMT-5:00');
+    const initDaysDiff = Math.ceil(Math.abs(today - initDate) / 1000 / 24 / 60 / 60);
+    const initWeeksDiff = Math.round(initDaysDiff * 2 / 7) / 2  // Math.floor(initDaysDiff / 7) + 1;
+
+    const reactDate = new Date('August 3, 2021 19:00:00 GMT-5:00');
+    const reactDaysDiff = Math.ceil(Math.abs(today - reactDate) / 1000 / 24 / 60 / 60);
+    const reactWeeksDiff = Math.round(reactDaysDiff * 2 / 7) / 2;
+
     const summaryText = "It's obviously a big WIP! The cloud instance serving this site" +
-                        " was created on July 22, 2021, so it's been about " + weeksDiff + 
+                        " was created on July 22, 2021, so it's been about " + initWeeksDiff + 
                         " weeks and change since I began my journey towards becoming" +
-                        " a full stack developer. Check back periodically as I make improvements :)";
+                        " a full stack developer. I have been locally integrating React into" +
+                        " the site for the past " + reactWeeksDiff + " weeks, and will push" +
+                        " changes to the cloud once they're complete!";
     $("#summary").html(summaryText);
 }
 
