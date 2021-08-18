@@ -1,3 +1,3 @@
 import App from "./components/App";
-import "../static/frontend/home.js";
-import "../static/frontend/home.css";
+import "../static/js/home.js";
+import "../static/styling/home.css";

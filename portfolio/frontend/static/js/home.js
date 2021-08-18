@@ -1,7 +1,8 @@
+import { slideshowTransition } from "./slideshow.js";
+
 // GLOBAL CONSTS
 const nPics = 3;
 const shortInterval = 5000;
-const longInterval = 10000;
 
 
 // REFERENCED OBJECTS
@@ -16,8 +17,9 @@ $(document).ready(onPageLoad);
 function onPageLoad () {
     updateSummary();
     setSlideshowInterval();
+    initSlideshow()
     addListeners()
-    // addSlideshowAutoChange();
+    console.log(slideshowTransition)
 }
 
 
@@ -41,19 +43,15 @@ function updateSummary () {
     $("#summary").html(summaryText);
 }
 
-function addListeners () {
-    // addSlideshowBackgroundTransition()
-    $("input[name=slider]").click(slideshowClicked);
+function initSlideshow () {
+    const ranVal = Math.ceil(Math.random() * nPics);
+    $(`input[name=slider][value="${ranVal}"]`).prop('checked', true);
+    slideshowTransition();
 }
 
-// function addSlideshowBackgroundTransition () {
-//     const transition = () => {$(".middle").toggleClass('blue');};
-//     $(".slideshow-input").on("change", () => {
-//         transition()
-//         // setTimeout(transition, 500);
-//     });
-// }
-
+function addListeners () {
+    $("input[name=slider]").click(slideshowClicked);
+}
 
 function setSlideshowInterval () {
     slideshowInterval = window.setInterval(autoIterateSlideshow, shortInterval);
