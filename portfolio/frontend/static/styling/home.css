@@ -208,7 +208,7 @@ input[type=radio] {
 }
 
 /* ADD MIXINS TO CUT DOWN CODE */
-#plbl-1:checked ~ .slideshow #pic-3, 
+/* #plbl-1:checked ~ .slideshow #pic-3, 
 #plbl-2:checked ~ .slideshow #pic-1, 
 #plbl-3:checked ~ .slideshow #pic-2 {
   transform: translatex(-45%) scale(.8);
@@ -236,7 +236,7 @@ input[type=radio] {
 #plbl-2:checked ~ .slideshow #pic-2 img, 
 #plbl-3:checked ~ .slideshow #pic-3 img {
   box-shadow: 5px 5px 5px rgba(81, 81, 81, 0.47);
-}
+} */
 
 .bottom {
     margin: 1em 0;

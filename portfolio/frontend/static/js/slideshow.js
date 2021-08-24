@@ -63,7 +63,6 @@ function hiddenSlide () {
 
 export function slideshowTransition () {
     const checkedVal = parseInt($("input[name=slider]:checked").val());
-    console.log('checkedVal')
     for (var i = 1; i < nPics + 1; i++){
         const valDiff = i - checkedVal;
         // console.log(i, valDiff, valDiff - nPics, valDiff + nPics)
