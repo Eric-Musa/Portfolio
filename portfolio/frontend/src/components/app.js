@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import Slideshow from './slideshow.js'
+import Slideshow from './slideshow'
+import getWindowDimensions from "./windowDimension";
+
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -122,6 +124,10 @@ export default function App() {
 }
 const appDiv = document.getElementById("app");
 render(<App />, appDiv)
+
+// window.addEventListener('resize', (e) => {
+//     console.log(getWindowDimensions())
+// })
 
 // var path = require('path');
 // const PICS_DIR = path.resolve(__dirname, "../../static/images/")
