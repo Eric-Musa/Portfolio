@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import Slideshow from './slideshow.js'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -106,6 +107,7 @@ export default function App() {
         <>
             <ButtonAppBar></ButtonAppBar>
             <Box></Box>
+            <Slideshow></Slideshow>
             {/* <Box></Box>
             <Box></Box>
             <Box></Box>
@@ -118,6 +120,9 @@ export default function App() {
         </>
     );
 }
-
 const appDiv = document.getElementById("app");
 render(<App />, appDiv)
+
+// var path = require('path');
+// const PICS_DIR = path.resolve(__dirname, "../../static/images/")
+// console.log(PICS_DIR)
