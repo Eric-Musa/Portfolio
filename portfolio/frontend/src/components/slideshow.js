@@ -3,35 +3,13 @@ import "../../static/styling/slideshow.scss";
 import useWindowDimensions from "./windowDimension";
 
 
-const IMG_NAMES_AND_ALTS = [
-    ["me_grand_tetons.jpg", "Me at Grand Tetons!"],
-    ["dancing_at_oxford.jpg", "Us dancing at Oxford Housing!"],
-    ["me_sand_dunes.jpg", "Me at Great Sand Dunes!"],
-    ["boys_on_the_roof.jpg", "Boys on the roof at Oxford!"],
-    ["me_grad_pic.jpg", "Me in graduation garb!"],
-    ["boys_at_the_stadium.jpg", "Boys at Michigan Stadium!"],
-];
-const nPics = IMG_NAMES_AND_ALTS.length;
 
-
-function getSlideType(i, index) {
-    const valDiff = i - index;
-    if (valDiff == -2 || valDiff - nPics == -2) {
-        return "farLeftSlide";
-    } else if (valDiff == -1 || valDiff - nPics == -1) {
-        return "nearLeftSlide";
-    } else if (valDiff == 0) {
-        return "centerSlide";
-    } else if (valDiff == 1 || valDiff + nPics == 1) {
-        return "nearRightSlide";
-    } else if (valDiff == 2 || valDiff + nPics == 2) {
-        return "farRightSlide";
-    } else {
-        return "hiddenSlide";
-    }
-}
-
-export default function Slideshow () {
+/**
+ * Slideshow component
+ * 
+ */
+export default function Slideshow (props) {
+    const nPics = props.imNamesAndAltTexts.length
 
     const [index, setIndex] = useState(Math.floor(Math.random() * nPics));
     const { height, width } = useWindowDimensions();
@@ -54,20 +32,37 @@ export default function Slideshow () {
         timer.current.timeoutID = setTimeout(setSlideshowInterval, INTERVAL *  1.5)  // set timer to start interval
     }
 
+    function getSlideType(i) {
+        const valDiff = i - index;
+        if (valDiff == -2 || valDiff - nPics == -2) {
+            return "farLeftSlide";
+        } else if (valDiff == -1 || valDiff - nPics == -1) {
+            return "nearLeftSlide";
+        } else if (valDiff == 0) {
+            return "centerSlide";
+        } else if (valDiff == 1 || valDiff + nPics == 1) {
+            return "nearRightSlide";
+        } else if (valDiff == 2 || valDiff + nPics == 2) {
+            return "farRightSlide";
+        } else {
+            return "hiddenSlide";
+        }
+    }
     return (
-        <div className="slideshow" 
-            style={{"height": width < 600 ? (width * 4/5) + "px" : "480px"}}>
+        <div className="slideshow-container" 
+            style={{"height": width < (parseInt(props.slideshowHeight) * 5/4) ? (width * 4/5) + "px" : props.slideshowHeight + "px"}}>
+            {/* ^^ responsive to screen width */}
 
-            <div className="slideshow-container" onChange={(e) => clicked(e)}>
-                {IMG_NAMES_AND_ALTS.map(([imgName, altText], i) => (
-                    <label className={"slide " + getSlideType(i, index)} 
+            <div className="slideshow" onChange={(e) => clicked(e)}>
+                {props.imNamesAndAltTexts.map(([imgName, altText], i) => (
+                    <label className={"slide " + getSlideType(i)} 
                         id={"slide-" + i}
                         style={{"width": ((width-20)/2) + "px"}}>
 
                         <input type="radio"
+                            className="slideshow-radio"
                             value={i}
-                            checked={index === i}
-                            style={{ display: 'none' }}/>
+                            checked={index === i}/>
                         <img src={"/static/images/" + imgName} alt={altText}/>
                     </label>
                 ))}

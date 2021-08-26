@@ -1,54 +1,48 @@
-.slideshow {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform-style: preserve-3d;
-    // min-height: 50em;
-    // height: 480px;
-    // width: 100%;
+@mixin rounded {
+    border-radius: 20px;  // rounded slides
 }
 
-.slideshow-container {
-    position: relative;
-    // height: 480px;
+.slideshow-container {  // outer container for Slideshow component
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  // double-centered content
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.slideshow {
+    position: relative;  // relative positioning so children can have absolute positioning
     height: 100%;
-    width: 100%;
-    // min-height: 48em;
-    
-    // @media (min-width: 600px) {
-    //     text-align: center;
-    // }
-    // @media (min-width: 960px) {
-    //     text-align: left;
-    // }
-    // @media (min-width: 1280px) {
-    //     text-align: left;
-    // }
+    width: 100%;  // fully fill outer container
 }
 
 .slide {
-    position: absolute;
+    @include rounded;  // rounded slides
+    position: absolute;  // slides have absolute positioning to allow transition
     height: 80%;
-    // width: fit-content;
-    // min-width: 10em;
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom: 0;  // centered inside parent container
     margin: auto;
     transition: transform 1.25s ease;
     cursor: pointer;
-    border-radius: 20px;
+}
+
+.slideshow-radio {
+    display: none;  // don't show radio buttons
 }
 
 img {
+    @include rounded;  // rounded slides
     height: 100%;
-    border-radius: 0.5em;
-    object-fit: cover;
     width: 100%;
-
+    object-fit: cover;  // cover cut-off portions of images
 }
+
+
+// Formattiing for each slide type
+// currently: 5 visible slides + (N-5) hidden slides
 
 .farLeftSlide {
     transform: translatex(-75%) scale(.5);
