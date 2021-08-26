@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Slideshow from './slideshow'
-import getWindowDimensions from "./windowDimension";
 
 
 import AppBar from '@material-ui/core/AppBar';

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import "../../static/styling/slideshow.scss";
+import useWindowDimensions from "./windowDimension";
 
 
 const IMG_NAMES_AND_ALTS = [
@@ -32,25 +33,44 @@ function getSlideType(i, index) {
 
 export default function Slideshow () {
 
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(Math.floor(Math.random() * nPics));
+    const { height, width } = useWindowDimensions();
 
-    useEffect(() => {
-        console.log(index)
-    });
+    const INTERVAL = 4000
+    const timer = useRef({intervalID: null, timeoutID: null})
+
+    useEffect(() => {setSlideshowInterval()
+        return () => (timer.current.intervalID = clearInterval(timer.current.intervalID))
+    }, []);
+
+    function setSlideshowInterval () {
+        timer.current.intervalID = setInterval(() => setIndex(prevIndex => (prevIndex+1) % 6), INTERVAL)
+    }
+
+    function clicked (event) {  // if an image is clicked...
+        setIndex(event.target.value);  // the index is changed
+        timer.current.intervalID = clearInterval(timer.current.intervalID)  // clear current interval
+        clearTimeout(timer.current.timeoutID)  // clear any existing timer from a previous click
+        timer.current.timeoutID = setTimeout(setSlideshowInterval, INTERVAL *  1.5)  // set timer to start interval
+    }
 
     return (
-        <div className="slideshow">
-            <div className="slideshow-container" onChange={(e) => setIndex(e.target.value)}>
+        <div className="slideshow" 
+            style={{"height": width < 600 ? (width * 4/5) + "px" : "480px"}}>
+
+            <div className="slideshow-container" onChange={(e) => clicked(e)}>
                 {IMG_NAMES_AND_ALTS.map(([imgName, altText], i) => (
-                        <label className={"slide " + getSlideType(i, index)} id={"slide-" + i}>
-                            <input type="radio"
-                                value={i}
-                                checked={index === i}
-                                style={{ display: 'none' }}/>
-                            <img src={"/static/images/" + imgName} alt={altText}/>
-                        </label>
-                    ))
-                }
+                    <label className={"slide " + getSlideType(i, index)} 
+                        id={"slide-" + i}
+                        style={{"width": ((width-20)/2) + "px"}}>
+
+                        <input type="radio"
+                            value={i}
+                            checked={index === i}
+                            style={{ display: 'none' }}/>
+                        <img src={"/static/images/" + imgName} alt={altText}/>
+                    </label>
+                ))}
             </div>
         </div>
     );
