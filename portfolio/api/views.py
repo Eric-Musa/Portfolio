@@ -7,6 +7,7 @@ from django.utils import timezone
 from .models import SocialMedia, Task, Access
 
 from functools import wraps
+import json
 
 # g = GeoIP2()
 
@@ -50,4 +51,4 @@ def register_access(view):
 
 
 def test(request):
-    return HttpResponse("Contacted Django API")
+    return HttpResponse(json.dumps({'text': "Contacted Django API"}))
