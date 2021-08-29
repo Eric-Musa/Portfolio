@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../static/styling/slideshow.scss";
 import useWindowDimensions from "./windowDimension";
 
@@ -8,13 +8,13 @@ import useWindowDimensions from "./windowDimension";
  * Slideshow component
  * 
  */
-export default function Slideshow (props) {
-    const nPics = props.imNamesAndAltTexts.length
+export default function Slideshow ({ props }) {
+    const {imNamesAndAltTexts, interval, heightPercent, aspectRatio, 
+        maxHeight, maxWidth, margin, transitionTime, clickFactor, initIndex} = props
+    const nPics = imNamesAndAltTexts.length
 
-    const [index, setIndex] = useState(Math.floor(Math.random() * nPics));
+    const [index, setIndex] = useState(initIndex);
     const { height, width } = useWindowDimensions();
-
-    const INTERVAL = 4000
     const timer = useRef({intervalID: null, timeoutID: null})
 
     useEffect(() => {setSlideshowInterval()
@@ -22,17 +22,17 @@ export default function Slideshow (props) {
     }, []);
 
     function setSlideshowInterval () {
-        timer.current.intervalID = setInterval(() => setIndex(prevIndex => (prevIndex+1) % 6), INTERVAL)
+        timer.current.intervalID = setInterval(() => setIndex(prevIndex => (prevIndex+1) % 6), interval)
     }
 
     function clicked (event) {  // if an image is clicked...
         setIndex(event.target.value);  // the index is changed
         timer.current.intervalID = clearInterval(timer.current.intervalID)  // clear current interval
         clearTimeout(timer.current.timeoutID)  // clear any existing timer from a previous click
-        timer.current.timeoutID = setTimeout(setSlideshowInterval, INTERVAL *  1.5)  // set timer to start interval
+        timer.current.timeoutID = setTimeout(setSlideshowInterval, interval * clickFactor)  // set timer to start interval
     }
 
-    function getSlideType(i) {
+    function getSlideType (i) {
         const valDiff = i - index;
         if (valDiff == -2 || valDiff - nPics == -2) {
             return "farLeftSlide";
@@ -48,16 +48,32 @@ export default function Slideshow (props) {
             return "hiddenSlide";
         }
     }
+
+    function getSlideshowHeight () {
+        return Math.min(width / aspectRatio, maxHeight) + "px"  // width < (slideshowHeight * aspectRatio) ? (width / aspectRatio) + "px" : slideshowHeight + "px"
+    }
+
+    function getSlideshowWidth (px=true) {
+        return px ?  Math.min(width, maxWidth) + "px" : Math.min(width, maxWidth)
+    }
+
     return (
         <div className="slideshow-container" 
-            style={{"height": width < (parseInt(props.slideshowHeight) * 5/4) ? (width * 4/5) + "px" : props.slideshowHeight + "px"}}>
+            style={{"height": getSlideshowHeight()}}>
             {/* ^^ responsive to screen width */}
 
-            <div className="slideshow" onChange={(e) => clicked(e)}>
-                {props.imNamesAndAltTexts.map(([imgName, altText], i) => (
-                    <label className={"slide " + getSlideType(i)} 
+            <div className="slideshow" 
+                onChange={(e) => clicked(e)}
+                style={{"width": getSlideshowWidth(true)}}
+                >
+                {imNamesAndAltTexts.map(([imgName, altText], i) => (
+                    <label className={"slide " + getSlideType(i)} // << this styles each slide by className according to SCSS styling
                         id={"slide-" + i}
-                        style={{"width": ((width-20)/2) + "px"}}>
+                        style={{
+                            "width": ((getSlideshowWidth(false)-2*margin)/2),
+                            "height": heightPercent,
+                            "transition": `transform ${transitionTime}s ease`,
+                            }}>
 
                         <input type="radio"
                             className="slideshow-radio"

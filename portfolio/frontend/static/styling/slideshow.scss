@@ -2,6 +2,11 @@
     border-radius: 20px;  // rounded slides
 }
 
+@mixin fully-fill {
+    height: 100%;
+    width: 100%;
+}
+
 .slideshow-container {  // outer container for Slideshow component
     display: flex;
     flex-direction: column;
@@ -11,21 +16,18 @@
 }
 
 .slideshow {
+    @include fully-fill;  // fully fill parent container
     position: relative;  // relative positioning so children can have absolute positioning
-    height: 100%;
-    width: 100%;  // fully fill outer container
 }
 
 .slide {
     @include rounded;  // rounded slides
     position: absolute;  // slides have absolute positioning to allow transition
-    height: 80%;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;  // centered inside parent container
     margin: auto;
-    transition: transform 1.25s ease;
     cursor: pointer;
 }
 
@@ -35,8 +37,7 @@
 
 img {
     @include rounded;  // rounded slides
-    height: 100%;
-    width: 100%;
+    @include fully-fill;  // fully fill parent container
     object-fit: cover;  // cover cut-off portions of images
 }
 

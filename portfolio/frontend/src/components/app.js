@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { render } from "react-dom";
 import Slideshow from './slideshow'
 import MainToolbar from "./mainToolbar";
@@ -15,6 +15,19 @@ const slideshowImNamesAndAltTexts = [
     ["boys_at_the_stadium.jpg", "Boys at Michigan Stadium!"],
 ];
 
+const slideshowProps = {
+    imNamesAndAltTexts: slideshowImNamesAndAltTexts,
+    interval: 4000,
+    aspectRatio: 16/9,
+    heightPercent: "80%",
+    maxHeight: 720,
+    maxWidth: 1600,
+    margin: 20,
+    transitionTime: 1.25,
+    clickFactor: 1.5,
+    initIndex: Math.floor(Math.random() * slideshowImNamesAndAltTexts.length)
+}
+
 
 export default function App() {
     return (
@@ -22,7 +35,7 @@ export default function App() {
             <MainToolbar></MainToolbar>
             <MainGrid></MainGrid>
             <ApiComponent></ApiComponent>
-            <Slideshow slideshowHeight="480" imNamesAndAltTexts={slideshowImNamesAndAltTexts}></Slideshow>
+            <Slideshow props={slideshowProps} ></Slideshow>
             <MainGrid></MainGrid>
             <MainGrid></MainGrid>
             <MainGrid></MainGrid>
