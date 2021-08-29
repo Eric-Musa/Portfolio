@@ -13,7 +13,7 @@ export default function Slideshow ({ props }) {
         maxHeight, maxWidth, margin, transitionTime, clickFactor, initIndex} = props
     const nPics = imNamesAndAltTexts.length
 
-    const [index, setIndex] = useState(initIndex);
+    const [index, setIndex] = useState((initIndex == 'random') ? Math.floor(Math.random() * imNamesAndAltTexts.length) : initIndex);
     const { height, width } = useWindowDimensions();
     const timer = useRef({intervalID: null, timeoutID: null})
 

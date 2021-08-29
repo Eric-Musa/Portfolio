@@ -25,7 +25,7 @@ const slideshowProps = {
     margin: 20,
     transitionTime: 1.25,
     clickFactor: 1.5,
-    initIndex: Math.floor(Math.random() * slideshowImNamesAndAltTexts.length)
+    initIndex: 'random'
 }
 
 
@@ -33,8 +33,9 @@ export default function App() {
     return (
         <div style={{'min-height': '100vh'}}>
             <MainToolbar></MainToolbar>
-            <MainGrid></MainGrid>
+            {/* <MainGrid></MainGrid> */}
             <ApiComponent></ApiComponent>
+            <Slideshow props={slideshowProps} ></Slideshow>
             <Slideshow props={slideshowProps} ></Slideshow>
             <MainGrid></MainGrid>
             <MainGrid></MainGrid>
