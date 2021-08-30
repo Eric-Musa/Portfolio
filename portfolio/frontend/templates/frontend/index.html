@@ -5,82 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'styling/home.css' %}">
-    <title>Eric Musa's portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
-    <script type="module" src="{% static 'js/home.js' %}"></script>
+    
+    <title>Testing Webpack Bundling</title>
+
 </head>
 <body>
-    <div class="common-top">
-        <div id="home-button-container">
-            <a href="/">
-                <img src="{% static 'favicon/android-chrome-512x512.png' %}" alt="Go to Home" id="home-button">
-            </a>
-        </div>
-        <div class="links-container" id="tabs-container">
-            <div class="fill-bar"></div>
-            <a href="/" id="home">Home</a>
-            <a href="/" id="research">Research</a>
-            <a href="/" id="projects">Projects</a>
-            <a href="/" id="hobbies">Hobbies</a>
-            <a href="/" id="roadmap">Roadmap</a>
-            <a href="/" id="about">About Me</a>
-            <div class="fill-bar"></div>
-        </div>
-    </div>
-    <div id="welcome-container">
-        <div id="welcome">
-            <h1>Welcome to the portfolio website of Eric Musa!</h1>
-            <p id="summary"></p>
-        </div>
-    </div>
-    <div class="middle">
-        <div class="slideshow-container">
-            <input type="radio" class="slideshow-input" name="slider" value="1", id="plbl-1" checked>
-            <input type="radio" class="slideshow-input" name="slider" value="2", id="plbl-2">
-            <input type="radio" class="slideshow-input" name="slider" value="3", id="plbl-3">
-            <input type="radio" class="slideshow-input" name="slider" value="4", id="plbl-4">
-            <input type="radio" class="slideshow-input" name="slider" value="5", id="plbl-5">
-            <input type="radio" class="slideshow-input" name="slider" value="6", id="plbl-6">
-            <div class="slideshow">
-                <label for="plbl-1" class="picture" id="pic-1">
-                    <img src="{% static 'images/me_grand_tetons.jpg' %}" alt="Me at Grand Tetons!">
-                </label>
-                <label for="plbl-2" class="picture" id="pic-2">
-                    <img src="{% static 'images/dancing_at_oxford.jpg' %}" alt="Us dancing at Oxford Housing!">
-                </label>
-                <label for="plbl-3" class="picture" id="pic-3">
-                    <img src="{% static 'images/me_sand_dunes.jpg' %}" alt="Me at Great Sand Dunes!">
-                </label>
-                <label for="plbl-4" class="picture" id="pic-4">
-                    <img src="{% static 'images/boys_on_the_roof.jpg' %}" alt="Boys on the roof at Oxford!">
-                </label>
-                <label for="plbl-5" class="picture" id="pic-5">
-                    <img src="{% static 'images/me_grad_pic.jpg' %}" alt="Me in graduation garb!">
-                </label>
-                <label for="plbl-6" class="picture" id="pic-6">
-                    <img src="{% static 'images/boys_at_the_stadium.jpg' %}" alt="Boys at Michigan Stadium!">
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="bottom">
-        <div class="links-container" id="social-media-container">
-            <div class="fill-bar"></div>
-            {% for sm in social_media %}
-                <a href="{{ sm.hyperlink }}" target="_blank">{{ sm.title }}</a>
-                <!-- ADD SOCIAL MEDIA ICON IMAGES -->
-            {% endfor %}
-            <div class="fill-bar"></div>
-        </div>
-    </div>
-    <!-- <div id="main">
+    <style>
+        body {
+            font-family: 'Roboto';
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <div id="main">
         <div id="app"></div>
-        <script src="{% static 'frontend/dist/main.js' %}"></script>
-    </div> -->
+    </div>
+
+    <script src="{% static 'frontend/dist/main.js' %}"></script>
 </body>
 </html>

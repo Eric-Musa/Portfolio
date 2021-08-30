@@ -8,6 +8,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
+    appBar: {
+        backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.primary.light
+    },
+    toolBar: {
+        backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.primary.light
+    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
@@ -22,8 +30,8 @@ export default function MainToolbar() {
         
     return (
         <div className={classes.root}>
-            <AppBar position="fixed">
-                <Toolbar>
+            <AppBar className={classes.appBar} position="fixed">
+                <Toolbar className={classes.toolBar}>
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />

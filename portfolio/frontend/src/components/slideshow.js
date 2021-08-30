@@ -54,23 +54,29 @@ export default function Slideshow ({ props }) {
     }
 
     function getSlideshowWidth (px=true) {
-        return px ?  Math.min(width, maxWidth) + "px" : Math.min(width, maxWidth)
+        return Math.min(width, maxWidth)
     }
 
     return (
         <div className="slideshow-container" 
-            style={{"height": getSlideshowHeight()}}>
+            style={{
+                "height": getSlideshowHeight(),
+                // "position": "absolute",            
+                // "left": 0,
+                // "right": 0,
+                // "top": "100px",
+                // "bottom": 0,
+                }}>
             {/* ^^ responsive to screen width */}
 
             <div className="slideshow" 
                 onChange={(e) => clicked(e)}
-                style={{"width": getSlideshowWidth(true)}}
                 >
                 {imNamesAndAltTexts.map(([imgName, altText], i) => (
                     <label className={"slide " + getSlideType(i)} // << this styles each slide by className according to SCSS styling
                         id={"slide-" + i}
                         style={{
-                            "width": ((getSlideshowWidth(false)-2*margin)/2),
+                            "width": ((getSlideshowWidth()-2*margin)/2),
                             "height": heightPercent,
                             "transition": `transform ${transitionTime}s ease`,
                             }}>

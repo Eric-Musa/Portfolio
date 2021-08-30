@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -17,7 +17,13 @@ const useStyles = makeStyles((theme) => ({
     },
     offset: {
         'min-height': '56px'   
-    }  // theme.mixins.toolbar,
+    },  // theme.mixins.toolbar,
+    botnav: {
+        'backgroundColor': theme.palette.primary.dark,
+    },
+    icon: {
+        'color': theme.palette.primary.light,
+    }
 }));
 
 export default function SocialMediaNavBar() {
@@ -26,18 +32,39 @@ export default function SocialMediaNavBar() {
     const timer = useRef({timeoutID: null})
     const classes = useStyles();
 
+    useEffect(()=>{
+        // console.log(value)
+        switch(value) {
+            case 'LinkedIn':
+                window.open("https://www.linkedin.com/in/ericmusa/", "_blank")
+                break;
+            case 'Instagram':
+                window.open("https://www.instagram.com/eric__mufasa/", "_blank")
+                break;
+            case 'Twitter':
+                window.open("https://twitter.com/eric__musa", "_blank")
+                break;
+            case 'Facebook':
+                window.open("https://facebook.com/ericmusa17", "_blank")
+                break;
+            default:
+                // code block
+            }
+    }, [value])
+
     return (
         <>
             <div className={classes.offset}/>
             <div className={classes.root}>
                 <BottomNavigation
+                    className={classes.botnav}
                     value={value}
                     onChange={(event, newValue) => {
                         setValue(newValue);
                         clearTimeout(timer.current.timeoutID)
                         timer.current.timeoutID = setTimeout(() => setValue(''), 1000)
                     }}
-                    showLabels
+                    // showLabels
                     // className={classes.root}
                     style={{
                     width: width,
@@ -45,10 +72,14 @@ export default function SocialMediaNavBar() {
                       bottom: 0,
                     }}
                     >
-                    <BottomNavigationAction label="LinkedIn" value='LinkedIn' icon={<LinkedIn />} />
-                    <BottomNavigationAction label="Instagram" value='Instagram' icon={<Instagram />} />
-                    <BottomNavigationAction label="Twitter" value='Twitter' icon={<Twitter />} />
-                    <BottomNavigationAction label="Facebook" value='Facebook' icon={<Facebook />} />
+                    <BottomNavigationAction className={classes.botnav} label="LinkedIn" 
+                        value='LinkedIn' icon={<LinkedIn className={classes.icon} />} />
+                    <BottomNavigationAction className={classes.botnav} label="Instagram" 
+                        value='Instagram' icon={<Instagram className={classes.icon} />} />
+                    <BottomNavigationAction className={classes.botnav} label="Twitter" 
+                        value='Twitter' icon={<Twitter className={classes.icon} />} />
+                    <BottomNavigationAction className={classes.botnav} label="Facebook" 
+                        value='Facebook' icon={<Facebook className={classes.icon} />} />
                 </BottomNavigation>
             </div>
         </>
